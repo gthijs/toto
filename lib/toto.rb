@@ -240,8 +240,8 @@ module Toto
 
       self.taint
       self.update data
-      self[:date] = Date.parse(self[:date].gsub("/","-")) rescue Date.today
-      self[:time] = Time.parse(self[:time].gsub("-",":")) rescue Time.now
+      self[:date] = Date.parse(self[:date].gsub('/','-')) rescue Date.today
+      self[:time] = Time.parse(self[:time].gsub('-',':')) rescue Time.now
       self
     end
 

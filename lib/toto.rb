@@ -1,5 +1,6 @@
 require 'yaml'
 require 'date'
+require 'time'
 require 'erb'
 require 'rack'
 require 'digest'
@@ -239,7 +240,8 @@ module Toto
 
       self.taint
       self.update data
-      self[:date] = Date.parse(self[:date].gsub('/', '-')) rescue Date.today
+      self[:date] = Date.parse(self[:date].gsub("/","-")) rescue Date.today
+      self[:time] = Time.parse(self[:time].gsub("-",":")) rescue Time.now
       self
     end
 
@@ -277,6 +279,7 @@ module Toto
 
     def title()   self[:title] || "an article"               end
     def date()    @config[:date].call(self[:date])           end
+    def time()    self[:time]                                end
     def author()  self[:author] || @config[:author]          end
     def to_html() self.load; super(:article, @config)        end
     alias :to_s to_html

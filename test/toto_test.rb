@@ -55,7 +55,7 @@ context Toto do
   end
 
   context "GET a single article" do
-    setup { @toto.get("/1900/05/17/the-wonderful-wizard-of-oz") }
+    setup { @toto.get("/1990/05/17/the-wonderful-wizard-of-oz") }
     asserts("returns a 200")                { topic.status }.equals 200
     asserts("content type is set properly") { topic.content_type }.equals "text/html"
     should("contain the article")           { topic.body }.includes_html("p" => /<em>Once upon a time<\/em>/)
